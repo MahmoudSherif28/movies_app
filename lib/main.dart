@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/features/Screens/Register/Register__screen/ui.dart';
-import 'features/Screens/login_screen/ui.dart';
+import 'package:movies/features/login/presntation/views/login_view.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context,  child) {
         return MaterialApp(
-          home: const login(),
+          home:  login(),
         );
       },
     );

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/Custom_Butoon.dart';
 import 'package:movies/core/custom_textfeild.dart';
 import 'package:movies/database/databasehelper.dart';
+import 'package:movies/features/Home/Presentation/views/home_screen.dart';
 import 'package:movies/features/Register/presntation/views/register_ui.dart';
 
 
@@ -94,6 +95,7 @@ class login extends StatelessWidget {
                       suffixIcon: Icon(
                         Icons.lock,
                         color: Colors.black,
+
                       ),
                       contentPadding: EdgeInsets.symmetric(
                           vertical: 10.0.sp, horizontal: 20.0.sp),
@@ -104,7 +106,12 @@ class login extends StatelessWidget {
                 height: 40.sp,
               ),
               CustomButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => homescreen()),
+                  );
+                },
                 label: ("LOGIN"),
               ),
               SizedBox(

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/features/Home/Data/models/movie_model.dart';
@@ -17,13 +18,17 @@ class CustomProductCard extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.4,
           child: Stack(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  "",
-                  height: 175.h,
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  fit: BoxFit.cover,
+              GestureDetector(onTap: (){
+
+              },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    "",
+                    height: 175.h,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(

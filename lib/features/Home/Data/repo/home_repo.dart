@@ -1,26 +1,23 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:movies/features/Home/Data/models/list_movi_model.dart';
 import 'package:movies/features/Home/Data/models/movie_model.dart';
-
+import'package:http/http.dart'as http;
 class HomeRepo {
-  static Future<List<MovieModel>> getMovies() async {
-    try {
-      const endpoint =
-          "https://moviesverse1.p.rapidapi.com/most-popular-movies";
-      final Map<String, String> headers = {
-        'X-RapidAPI-Key': 'cf815711f2msh774f04809a4efcfp1205a5jsn08c32ff65e65',
-        'X-RapidAPI-Host': 'moviesverse1.p.rapidapi.com',
-      };
-      final response = await http.get(Uri.parse(endpoint), headers: headers);
-      final decodedResponse = jsonDecode(response.body);
-      MovieListModel movieListModel = MovieListModel.fromJson(decodedResponse);
-      List<MovieModel> tmpMovieList = movieListModel.movieListModel
-          .map((e) => MovieModel.fromJson(e))
-          .toList();
-      return tmpMovieList;
-    } catch (e) {
-      throw Exception('Failed to get movies! Please try again');
+  static const String endPoint = "https://imdb-top-100-movies.p.rapidapi.com/";
+  Future<List<MovieModel>> getMovies() async {
+    final headers = {
+     'X-RapidAPI-Key': '307b3e57a2msh3ca8360c2901688p10721ejsn718b771ff1ee',
+      'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
+    };
+    final response = await http.get(Uri.parse(endPoint), headers: headers);
+    if (response.statusCode <= 299 && response.statusCode >= 200) {
+      final List<dynamic> decodedResponse = jsonDecode(response.body);
+      List<MovieModel> movies =
+      decodedResponse.map((item) => MovieModel.fromJson(item)).toList();
+      print(response.statusCode);
+      return movies;
+    } else {
+      print(response.statusCode);
+      throw ("RequestFailure${response.body}");
     }
   }
 }

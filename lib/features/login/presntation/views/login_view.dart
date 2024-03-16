@@ -5,6 +5,7 @@ import 'package:movies/core/custom_textfeild.dart';
 import 'package:movies/database/databasehelper.dart';
 import 'package:movies/features/Home/Presentation/views/home_screen.dart';
 import 'package:movies/features/Register/presntation/views/register_ui.dart';
+import 'package:movies/features/navigationbar/NavigationBar.dart';
 
 
 class login extends StatelessWidget {
@@ -109,7 +110,7 @@ class login extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => homescreen()),
+                    MaterialPageRoute(builder: (context) => NavigationScreen()),
                   );
                 },
                 label: ("LOGIN"),

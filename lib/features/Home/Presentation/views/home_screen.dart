@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies/core/CustomMovieCard.dart';
 import 'package:movies/features/Home/Data/repo/home_repo.dart';
+import 'package:movies/features/search/search.dart';
 
 class homescreen extends StatelessWidget {
   homescreen({super.key});
@@ -34,11 +35,14 @@ class homescreen extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (
+                              context) => SearchPage()));
+                        },
                         icon: Icon(
-                          Icons.bookmark_outline_outlined,
+                          Icons.search_outlined,
                           color: Color(0xff937900),
-                          size: 40.sp,
+                          size: 45.sp,
                         )),
                   ],
                 ),
@@ -46,7 +50,7 @@ class homescreen extends StatelessWidget {
                   height: 24.h,
                 ),
                 FutureBuilder(
-                  future: HomeRepo.getMovies(),
+                  future: HomeRepo().getMovies(),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return Center(
@@ -63,16 +67,20 @@ class homescreen extends StatelessWidget {
                           shrinkWrap: true,
                           controller: scrollController,
                           gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  childAspectRatio:
-                                      (MediaQuery.of(context).size.width *
-                                              0.4) /
-                                          260,
-                                  crossAxisCount: 2),
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio:
+                              (MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width *
+                                  0.4) /
+                                  260,
+                              crossAxisCount: 2),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
-                            return CustomMovieCard(movieModel:snapshot.data![index]
-                                );
+                            return CustomMovieCard(
+                                movieModel: snapshot.data![index]
+                            );
                           });
                     }
                     return const Center(child: CircularProgressIndicator());

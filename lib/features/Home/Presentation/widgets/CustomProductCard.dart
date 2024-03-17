@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies/features/Favourite/Details/details.dart';
 import 'package:movies/features/Home/Data/models/movie_model.dart';
 
 class CustomProductCard extends StatelessWidget {
@@ -17,7 +16,6 @@ class CustomProductCard extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-
           },
           child: Container(
             height: 175.h,

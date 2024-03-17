@@ -149,10 +149,17 @@ class _moviedetailsState extends State<moviedetails> {
                           // Text color of the button
                           minimumSize: Size(200, 50),
                         ),
-                        child: Text(
-                          "WATCH TRAILER",
-                          style: (TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
+                        child: Row(
+                          children: [
+                            Text(
+                              "WATCH TRAILER",
+                              style: (TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                            ),
+                            SizedBox(width: 2.w,),
+
+                            Icon(Icons.slow_motion_video_sharp,)
+                          ],
                         ),
                       ),
                     ],

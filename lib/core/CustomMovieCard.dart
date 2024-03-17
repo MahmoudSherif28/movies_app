@@ -76,7 +76,7 @@ class CustomMovieCard extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 50,
+                    width: 65,
                   ),
                   Text(
                     movieModel.rating,

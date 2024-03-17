@@ -12,7 +12,16 @@ class registeration {
   registeration.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     username = map['username'];
-    Password = map['password'];
+    Password = map['Password'];
+  }
 
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> map = {};
+
+    map['id'] = id;
+    map['username'] = username;
+    map['Password'] = Password;
+
+    return map;
   }
 }

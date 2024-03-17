@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/database/fav_database_model.dart';
+import 'package:movies/database/fav_database.dart';
 import 'package:movies/features/Trailler/trailer.dart';
 
 class moviedetails extends StatefulWidget {
@@ -22,7 +24,6 @@ class moviedetails extends StatefulWidget {
 }
 
 class _moviedetailsState extends State<moviedetails> {
-
   bool press = true;
 
   @override
@@ -70,7 +71,7 @@ class _moviedetailsState extends State<moviedetails> {
                 children: [
                   Text(
                     widget.title,
-                    style: TextStyle(color: Colors.grey, fontSize: 20.sp),
+                    style: TextStyle(color: Color(0xff937900), fontSize: 25.sp),
                   ),
                   SizedBox(
                     height: 10.h,
@@ -82,7 +83,7 @@ class _moviedetailsState extends State<moviedetails> {
                         style: TextStyle(color: Colors.grey, fontSize: 17),
                       ),
                       SizedBox(
-                        width: 2.w,
+                        width: 4.w,
                       ),
                       Icon(
                         Icons.star,
@@ -124,23 +125,32 @@ class _moviedetailsState extends State<moviedetails> {
                       IconButton(
                           onPressed: () {
                             setState(() {
-                              press=!press;
+                              press = !press;
                             });
-
                           },
                           icon: (Icon(
                             Icons.favorite,
                             size: 40,
-                            color: press? Colors.grey:Colors.red,
+                            color: press ? Colors.grey : Colors.red,
                           ))),
                       SizedBox(
                         width: 90.w,
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          SQLProvider.instance.insert(SQLModel(
+                              title: widget.title,
+                              image: widget.image,
+                              bigImage: widget.image,
+                              year: int.parse(widget.title),
+                              rating: widget.rating,
+                              id: widget.id));
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => movietrailer()),
+                            MaterialPageRoute(
+                                builder: (context) => movietrailer(
+                                      id: widget.id,
+                                    )),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -156,9 +166,12 @@ class _moviedetailsState extends State<moviedetails> {
                               style: (TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold)),
                             ),
-                            SizedBox(width: 2.w,),
-
-                            Icon(Icons.slow_motion_video_sharp,)
+                            SizedBox(
+                              width: 2.w,
+                            ),
+                            Icon(
+                              Icons.slow_motion_video_sharp,
+                            )
                           ],
                         ),
                       ),

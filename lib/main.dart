@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/database/fav_database.dart';
 import 'package:movies/features/Splash/view/splash__screen.dart';
 
-
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SQLProvider.instance.open();
   runApp(const MyApp());
 }
 

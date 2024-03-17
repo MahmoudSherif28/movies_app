@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies/features/Details/details.dart';
 import 'package:movies/features/Home/Data/models/movie_model.dart';
 
 class CustomMovieCard extends StatelessWidget {
@@ -7,29 +8,38 @@ class CustomMovieCard extends StatelessWidget {
     super.key,
     required this.movieModel,
   });
-  final MovieModel movieModel;
-  @override
 
+  final MovieModel movieModel;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
           height: 175.h,
-          width:
-          MediaQuery.of(context).size.width * 0.4,
+          width: MediaQuery.of(context).size.width * 0.4,
           child: Stack(
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  movieModel.image,
-                  height: 175.h,
-                  width: MediaQuery.of(context)
-                      .size
-                      .width *
-                      0.4,
-                  fit: BoxFit.cover,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => moviedetails(
+                              id: movieModel.id,
+                              image: movieModel.image,
+                              title: movieModel.title,
+                              rating: movieModel.rating,
+                              description: movieModel.description,
+                            )));
+                  },
+                  child: Image.network(
+                    movieModel.image,
+                    height: 175.h,
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               Positioned(
@@ -60,7 +70,7 @@ class CustomMovieCard extends StatelessWidget {
                 movieModel.title,
                 style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold ,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white54),
               ),
               Row(
@@ -71,8 +81,7 @@ class CustomMovieCard extends StatelessWidget {
                   Text(
                     movieModel.rating,
                     style: TextStyle(
-                        color: Colors.white54,
-                        fontWeight: FontWeight.w900),
+                        color: Colors.white54, fontWeight: FontWeight.w900),
                   ),
                   Icon(
                     Icons.star,

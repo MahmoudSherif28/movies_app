@@ -19,8 +19,8 @@ class _FavouriteState extends State<Favourite> {
       body: SafeArea(
         child: Column(
           children: [
-            FutureBuilder<List<SQLModel>>(
-                future: SQLProvider.instance.getAllMovies(),
+            FutureBuilder<List<Map>>(
+                future: SqfliteDb().getData(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -33,19 +33,21 @@ class _FavouriteState extends State<Favourite> {
                     );
                   }
                   if (snapshot.hasData) {
-                    favouritemovies = snapshot.data!;
                     return Expanded(
                       child: ListView.builder(
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
                           return Row(
                             children: [
-                              Image.network(favouritemovies[index].image),
+                              Image.network(snapshot.data![index]["image"]),
+
                             ],
                           );
                         },
                       ),
                     );
                   }
+                  print(snapshot.data![0]["image"]);
                   return const Center(child: CircularProgressIndicator());
                 }),
           ],

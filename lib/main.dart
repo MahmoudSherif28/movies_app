@@ -5,7 +5,7 @@ import 'package:movies/features/Splash/view/splash__screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await SQLProvider.instance.open();
+ await SqfliteDb ().init();
   runApp(const MyApp());
 }
 

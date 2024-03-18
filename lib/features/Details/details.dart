@@ -138,13 +138,10 @@ class _moviedetailsState extends State<moviedetails> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          SQLProvider.instance.insert(SQLModel(
+                          SqfliteDb().insertData(
+                              id: widget.id,
                               title: widget.title,
-                              image: widget.image,
-                              bigImage: widget.image,
-                              year: int.parse(widget.title),
-                              rating: widget.rating,
-                              id: widget.id));
+                              image: widget.image);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

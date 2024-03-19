@@ -5,7 +5,7 @@ class HomeRepo {
   static const String endPoint = "https://imdb-top-100-movies.p.rapidapi.com/";
   Future<List<MovieModel>> getMovies() async {
     final headers = {
-    'X-RapidAPI-Key': '445de78d24msh5658f6839f3aa68p10688ajsne7f8ae07c073',
+      'X-RapidAPI-Key': 'e03a824990msh9ce142b7002cf69p1387a4jsn2f458a843750',
       'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
     };
     final response = await http.get(Uri.parse(endPoint), headers: headers);

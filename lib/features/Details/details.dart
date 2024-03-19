@@ -124,6 +124,10 @@ class _moviedetailsState extends State<moviedetails> {
                       ),
                       IconButton(
                           onPressed: () {
+                            SqfliteDb().insertData(
+                                id: widget.id,
+                                title: widget.title,
+                                image: widget.image);
                             setState(() {
                               press = !press;
                             });
@@ -138,17 +142,14 @@ class _moviedetailsState extends State<moviedetails> {
                       ),
                       ElevatedButton(
                         onPressed: () {
-                          SqfliteDb().insertData(
-                              id: widget.id,
-                              title: widget.title,
-                              image: widget.image);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => movietrailer(
-                                      id: widget.id,
-                                    )),
+                                  id: widget.id,
+                                )),
                           );
+
                         },
                         style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.white60,
